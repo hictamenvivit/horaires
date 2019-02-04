@@ -60,7 +60,7 @@ class Allosession():
     def as_html(self):
         res = "<html><body><h1> Horaires des cinémas : </h1>\n"
         for nom_cinema, cinema in self.dico.items():
-            res += "<h2>{}<h2>\n".format(nom_cinema)
+            res += "<h2>{}</h2>\n".format(nom_cinema)
             for film in cinema:
                 res += "<p>{} ({})  {}</p>\n".format(film['titre'], film['directors'], film['join_horaires'])
                 
