@@ -56,7 +56,13 @@ class Allosession():
                 resultat += "    {0}    {1}\n".format(titre,horaires)
             resultat += '\n\n'
         return resultat
-     
+        
+    def as_html(self):
+        res = "<h1> Horaires des cinémas : </h1>\n"
+        for nom_cinema, cinema in self.dico.items():
+            res += "<h2>{}<h2>\n".format(nom_cinema)
+            for film in cinema:
+                res += "<p>{} ({})  {}}*</p>\n".format(film.titre, film.directors, film.join_horaires)
        
     def ecrire_horaires(self):
         fichier = open('horaires','w+')
