@@ -1,7 +1,4 @@
-try :
-    from .allocine import *
-except SystemError:
-    from allocine import *
+from allocine import *
 
 from datetime import datetime as dt
 
