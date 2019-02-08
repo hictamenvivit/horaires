@@ -21,7 +21,7 @@ class Allosession():
     'C0105':'UGC Rotonde',
     }
     
-    choix_l = nom_simples.keys()
+    choix_l = noms_simples.keys()
     
     choix = ','.join(choix_l)
     dico = {}
