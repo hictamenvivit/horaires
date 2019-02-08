@@ -1,0 +1,71 @@
+C0003,MK2 Quai de Seine
+C0004,Le Cinéma des Cinéastes
+C0005,L'Entrepot
+C0007,Gaumont Champs-Elysées - Marignan
+C0009,Le Balzac
+C0010,UGC Normandie
+C0012,Les Cinq Caumartin
+C0013,Luminor Hôtel de Ville
+C0014,Institut finlandais
+C0015,Christine 21
+C0016,Studio Galande
+C0020,Filmothèque du Quartier Latin
+C0023,Le Brady Cinema & Théâtre
+C0024,Gaumont Les Fauvettes
+C0025,Sept Parnassiens
+C0026,UGC Ciné Cité Bercy
+C0030,Musee d'Orsay, Auditorium
+C0037,Gaumont Alésia
+C0040,MK2 Bastille (côté Fg St Antoine)
+C0041,Nouvel Odéon 
+C0042,Epée de Bois
+C0049,Bretagne
+C0050,MK2 Beaubourg
+C0052,Gaumont Parnasse côté Montparnos
+C0054,L'Arlequin
+C0056,Cite des Sciences
+C0059,Centre Wallonie-Bruxelles
+C0060,Gaumont Opéra (côté Premier)
+C0061,Cinéma Studio 28
+C0065,Le Grand Rex
+C0071,Ecoles 21 
+C0072,Le Grand Action
+C0073,Le Champo - Espace Jacques Tati
+C0074,Reflet Medicis
+C0076,Cinéma du Panthéon
+C0083,Studio des Ursulines
+C0089,Max Linder Panorama
+C0092,MK2 Odéon (Côté St Michel)
+C0093,Lucernaire
+C0095,Les 3 Luxembourg
+C0096,Etoile Saint-Germain-des-Prés
+C0097,MK2 Odéon (Côté St Germain)
+C0099,MK2 Parnasse
+C0100,Saint-André des Arts 
+C0102,UGC Danton
+C0103,UGC Montparnasse
+C0104,UGC Odéon
+C0105,UGC Rotonde
+C0108,Elysées Lincoln
+C0112,UGC George V
+C0116,Gaumont Aquaboulevard
+C0117,Espace Saint-Michel
+C0119,Forum des images
+C0120,Majestic Passy
+C0121,Gaumont Opéra (côté Français)
+C0125,Gaumont Opéra (côté Capucines)
+C0126,UGC Opéra
+C0127,Centre Georges-Pompidou
+C0134,L'Archipel - PARIS CINE
+C0139,Majestic Bastille
+C0144,MK2 Nation
+C0146,UGC Lyon Bastille
+C0147,Escurial
+C0150,UGC Gobelins
+C0153,Cinéma Chaplin Denfert
+C0158,Gaumont Parnasse
+C0159,UGC Ciné Cité Les Halles
+C0161,Gaumont Convention
+C0169,Auditorium du Louvre
+C0170,La Clef
+C0179, Le Louxor

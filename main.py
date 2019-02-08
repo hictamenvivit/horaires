@@ -12,15 +12,17 @@ class Allosession():
     'C0073':'Le Champo',
     'C0074':'Reflet Médicis',
     'W7510':'Le Louxor',
+    'C0089':'Max Linder',
+    'C0102':'UGC Danton',
+    'C0104':'UGC Odéon',
+    'C0097':'MK2 Odéon (St Germain)',
+    'C0092':'MK2 Odéon (St Michel)',
+    'C0103':'UGC Montparnasse',
+    'C0105':'UGC Rotonde',
     }
     
-    choix_l = [
-    'C0020',
-    'C0054',
-    'C0073',
-    'C0074',
-    'W7510',
-    ]
+    choix_l = nom_simples.keys()
+    
     choix = ','.join(choix_l)
     dico = {}
     total = showtimelist(theaters=choix)
