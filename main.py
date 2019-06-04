@@ -35,6 +35,8 @@ class Allosession():
             liste_films = []
             films = cinema['movieShowtimes']
             for film in films:
+                if 'scr' not in film.keys():
+                    continue
                 scr = film['scr'][0]
                 date = scr['d']
                 if date == jour_choisi:
