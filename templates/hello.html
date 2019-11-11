@@ -1,0 +1,36 @@
+
+{% raw %}
+<body>
+  
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+
+<div id="horaires">
+
+    <div v-for="(cinema_content, cinema_name, index) in content">
+      <h2>{{cinema_name}}</h2>
+        
+        <p v-for="film_content in cinema_content">{{film_content.titre}} ({{film_content.directors}}): {{film_content.join_horaires}}
+      
+    </div>
+    
+</div>
+
+
+
+
+<script>
+  
+horaires = new Vue({
+  el: "#horaires",
+  data: {
+    content:{% endraw %}{{content|safe}}{% raw %}
+  }
+})
+  
+</script>
+
+</body>
+
+{% endraw %}
