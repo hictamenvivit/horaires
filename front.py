@@ -2,7 +2,6 @@ from flask import Flask, send_file, render_template
 import json
 from models import get_formatted_showtimes
 from datetime import datetime as dt
-import datetime
 
 app = Flask(__name__, static_url_path='/files/')
 app.config['JSON_AS_ASCII'] = False
@@ -11,7 +10,7 @@ app.config['JSON_AS_ASCII'] = False
 def index():
     with open('theater_codes.json', 'r') as f:
         theater_codes = json.load(f)
-    showtimes = get_formatted_showtimes(theater_codes, jour_choisi=dt.strftime(dt.today() + datetime.timedelta(days=1),"%Y-%m-%d"))
+    showtimes = get_formatted_showtimes(theater_codes, jour_choisi=dt.strftime(dt.today(),"%Y-%m-%d"))
     return render_template('hello.html', content=showtimes)
     
 @app.route('/scenario/')
