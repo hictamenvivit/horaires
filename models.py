@@ -11,7 +11,7 @@ def get_formatted_showtimes(theaters_dict, jour_choisi=dt.strftime(dt.today(),"%
 
     theaterstimes = stimes['feed']['theaterShowtimes']
 
-    result = dict()
+    result = list()
     for cinema in theaterstimes:
         code_cine = cinema['place']['theater']['code']
         nom_cine = theaters_dict[code_cine]
@@ -26,11 +26,12 @@ def get_formatted_showtimes(theaters_dict, jour_choisi=dt.strftime(dt.today(),"%
                 ce_film = {
                     'titre': film['onShow']['movie']['title'],
                     'horaires':[i['$'] for i in scr['t'] ],
-                    'directors': film['onShow']['movie']['castingShort']['directors']
+                    'directors': film['onShow']['movie']['castingShort']['directors'],
+                    'code': film['onShow']['movie']['code']
                 }
                 ce_film['join_horaires'] = ' | '.join(ce_film['horaires'])
                 liste_films.append(ce_film)
-        result[nom_cine] = liste_films
+        result.append(dict(theater_name=nom_cine, movies_list=liste_films))
     return result
     
 noms_simples = {

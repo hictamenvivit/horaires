@@ -5,16 +5,43 @@
 
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 
+<style>
+  
+a {
+  color: black;
+  text-decoration:none;
+}
+  
+</style>
 
-<div id="horaires">
+<div id="horaires" v-if="seen">
 
-    <div v-for="(cinema_content, cinema_name, index) in content">
-      <h2>{{cinema_name}}</h2>
+    <div v-for="cinema in content">
+      <h2>{{cinema.theater_name}}</h2>
         
-        <p v-for="film_content in cinema_content">{{film_content.titre}} ({{film_content.directors}}): {{film_content.join_horaires}}
+        <p v-for="film_content in cinema.movies_list">
+        <a  href="#" @click="show_film(film_content.code, film_content.titre)" >{{film_content.titre}} ({{film_content.directors}}): {{film_content.join_horaires}}
+        </p>
       
     </div>
     
+    <a href="#" @click="show_film()">Show film</a>
+    
+    
+    
+    
+</div>
+
+<div id="film" v-if="seen">
+  
+  <h1>{{content.film_name}}</h1>
+  <p v-for="theater in content.theaters">
+      {{theater.theater_name}}: {{theater.times}}
+  </p>
+  
+  
+  <a href="#" @click="reset()"> Back </a>
+  
 </div>
 
 
@@ -25,7 +52,42 @@
 horaires = new Vue({
   el: "#horaires",
   data: {
-    content:{% endraw %}{{content|safe}}{% raw %}
+    content: {% endraw %}{{content|safe}}{% raw %},
+    seen: true
+  },
+  methods: {
+    show_film: function (code, film_name) {
+      this.seen = false
+      film.content = {
+        film_name: film_name,
+        theaters: this.content.reduce(function(agg, nv) {
+          var times_in_this_theater = nv.movies_list.filter(e=>e.code==code)
+          if (times_in_this_theater.length>0) {
+              agg.push({
+                  theater_name: nv.theater_name,
+                  times: times_in_this_theater[0].join_horaires
+              })}
+          return agg
+          },
+        [])
+      }
+      
+      film.seen = true
+    }
+  }
+})
+
+film = new Vue({
+  el: "#film",
+  data: {
+    seen: false,
+    content: null
+  },
+  methods: {
+    reset: function () {
+      this.seen = false
+      horaires.seen = true
+    }
   }
 })
   
