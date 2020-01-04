@@ -15,7 +15,7 @@ def index():
     
 @app.route('/scenario/')
 def scenario():
-    return send_file('files/Maxime_Bettinelli_Le_Bulletin.pdf')
+    return send_file('files/scenario.pdf')
     #return 'iih'
     
 @app.route('/hello/')
