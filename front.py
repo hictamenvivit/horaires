@@ -1,7 +1,8 @@
-from flask import Flask, send_file, render_template
+from flask import Flask, send_file, render_template, jsonify
 import json
 from models import get_formatted_showtimes
 from datetime import datetime as dt
+from matrix import get_positif_cdc_grades
 
 app = Flask(__name__, static_url_path='/files/')
 app.config['JSON_AS_ASCII'] = False
@@ -21,6 +22,10 @@ def scenario():
 @app.route('/hello/')
 def hello():
     return 'hello'
+
+@app.route('/matrix/')
+def matrix():
+    return render_template("matrix.html", content=get_positif_cdc_grades())
     
     
 if __name__ == "__main__":

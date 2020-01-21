@@ -78,8 +78,8 @@ def movie(code, profile=None, mediafmt=None, format="json", filter=None, stripta
 #   count (optionnal) : number of critic to return (should be an integer)
 #   page (optionnal) : page number to return (10 results by page by default)
 #   format (optionnal) : returns the result in JSON or XML format ("json" or "xml", default set to JSON)
-def reviewlist(code, filter="public%2Cdesk-press", count=None, page=None, format="json"):
-    data = {'code': str(code), "filter": filter, "format": format}
+def reviewlist(code, filter="desk-press", count=100, page=None, format="json"):
+    data = {'code': str(code), "filter": filter, "format": format, "type":"movie"}
     if count is not None:
         data["count"] = str(count)
     if page is not None:
