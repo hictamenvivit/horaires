@@ -1,5 +1,4 @@
 # coding: utf-8
-from matplotlib import pyplot
 from main import Allosession
 from grades import get_grades
 
