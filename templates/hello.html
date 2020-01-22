@@ -14,13 +14,15 @@ a {
   
 </style>
 
+<a href="matrix"> Voir les films selon leur note sur Positif et les Cahiers</a>
+
 <div id="horaires" v-if="seen">
 
     <div v-for="cinema in content">
       <h2>{{cinema.theater_name}}</h2>
         
         <p v-for="film_content in cinema.movies_list">
-        <a  href="#" @click="show_film(film_content.code, film_content.titre)" >{{film_content.titre}} ({{film_content.directors}}): {{film_content.join_horaires}}
+        <a  href="#" @click="show_film(film_content.code, film_content.titre, film_content.directors)" >{{film_content.titre}} ({{film_content.directors}}): {{film_content.join_horaires}}
         </p>
       
     </div>
@@ -34,7 +36,13 @@ a {
 
 <div id="film" v-if="seen">
   
-  <h1>{{content.film_name}}</h1>
+  <h1>{{content.film_name}} ({{content.film_directors}})</h1>
+  <p style="font-style: italic;">{{synopsis}}</p>
+  
+  <div v-if="reviews">
+    <p v-if="reviews.Positif"> Note Positif : {{positif_rating}} <br/> {{reviews.Positif.body}}</p>
+    <p v-if="reviews.Cahiers"> Note Cahiers : {{cahiers_rating}} <br/> {{reviews.Cahiers.body}}</p>
+  </div>
   <p v-for="theater in content.theaters">
       {{theater.theater_name}}: {{theater.times}}
   </p>
@@ -48,6 +56,22 @@ a {
 
 
 <script>
+
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+    xmlHttp.send(null);
+}
+
+function star_grade(grade){
+  return ["NON", "★", "★★", "★★★", "★★★★", "★★★★★"][grade]
+}
+
   
 horaires = new Vue({
   el: "#horaires",
@@ -56,10 +80,12 @@ horaires = new Vue({
     seen: true
   },
   methods: {
-    show_film: function (code, film_name) {
+    show_film: function (code, film_name, film_directors) {
       this.seen = false
       film.content = {
         film_name: film_name,
+        film_directors: film_directors,
+        code: code,
         theaters: this.content.reduce(function(agg, nv) {
           var times_in_this_theater = nv.movies_list.filter(e=>e.code==code)
           if (times_in_this_theater.length>0) {
@@ -73,6 +99,7 @@ horaires = new Vue({
       }
       
       film.seen = true
+      film.request_reviews()
     }
   }
 })
@@ -81,12 +108,46 @@ film = new Vue({
   el: "#film",
   data: {
     seen: false,
-    content: null
+    content: null,
+    synopsis: null,
+    reviews: null
   },
   methods: {
     reset: function () {
       this.seen = false
       horaires.seen = true
+      this.content = null
+      this.synopsis = null
+      this.reviews = null
+    },
+    request_reviews(){
+      console.log('hello');
+      console.log("movie_reviews/" + this.content.code)
+      httpGetAsync("movie_reviews/" + this.content.code, function(response) {
+        
+        response_content = JSON.parse(response)
+        this.synopsis = response_content.synopsis
+        this.reviews = response_content.reviews
+        console.log('Je suis la')
+        console.log(response_content.reviews)
+        
+      }.bind(this))
+    }
+    
+  },
+  
+  computed: {
+    positif_rating() {
+      if (!this.reviews.Positif) {
+        return null
+      }
+      return star_grade(this.reviews.Positif.rating)
+    },
+    cahiers_rating() {
+      if (!this.reviews.Cahiers) {
+        return null
+      }
+      return star_grade(this.reviews.Cahiers.rating)
     }
   }
 })

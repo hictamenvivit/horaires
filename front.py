@@ -3,6 +3,7 @@ import json
 from models import get_formatted_showtimes
 from datetime import datetime as dt
 from matrix import get_positif_cdc_grades
+from grades import get_grades_and_reviews
 
 app = Flask(__name__, static_url_path='/files/')
 app.config['JSON_AS_ASCII'] = False
@@ -27,6 +28,9 @@ def hello():
 def matrix():
     return render_template("matrix.html", content=get_positif_cdc_grades())
     
+@app.route('/movie_reviews/<movie_code>')
+def movie_reviews(movie_code):
+    return jsonify(get_grades_and_reviews(int(movie_code)))
     
 if __name__ == "__main__":
     app.run(debug=True)
