@@ -125,12 +125,9 @@ film = new Vue({
       console.log("movie_reviews/" + this.content.code)
       httpGetAsync("movie_reviews/" + this.content.code, function(response) {
         
-        response_content = JSON.parse(response)
-        this.synopsis = response_content.synopsis
-        this.reviews = response_content.reviews
-        console.log('Je suis la')
-        console.log(response_content.reviews)
-        
+        response_content = JSON.parse(response);
+        this.synopsis = response_content.synopsis.replace(/<\/?[^>]+(>|$)/g, "");
+        this.reviews = response_content.reviews;        
       }.bind(this))
     }
     
