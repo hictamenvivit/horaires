@@ -23,10 +23,14 @@ def get_formatted_showtimes(theaters_dict, jour_choisi=dt.strftime(dt.today(),"%
             scr = film['scr'][0]
             date = scr['d']
             if date == jour_choisi:
+                try:
+                    directors = film['onShow']['movie']['castingShort']['directors']
+                except KeyError:
+                    directors = "Directors not found"
                 ce_film = {
                     'titre': film['onShow']['movie']['title'],
                     'horaires':[i['$'] for i in scr['t'] ],
-                    'directors': film['onShow']['movie']['castingShort']['directors'],
+                    'directors': directors,
                     'code': film['onShow']['movie']['code']
                 }
                 ce_film['join_horaires'] = ' | '.join(ce_film['horaires'])
