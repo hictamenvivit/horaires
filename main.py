@@ -40,14 +40,18 @@ class Allosession():
                 scr = film['scr'][0]
                 date = scr['d']
                 if date == jour_choisi:
+                    try:
+                        directors = film['onShow']['movie']['castingShort']['directors']
+                    except KeyError:
+                        directors = "Directors not found"
                     ce_film = {
                         'titre': film['onShow']['movie']['title'],
                         'code': film['onShow']["movie"]["code"],
                         'horaires':[i['$'] for i in scr['t'] ],
-                        'directors': film['onShow']['movie']['castingShort']['directors']
+                        'directors': directors
                     }
                     ce_film['join_horaires'] = ' | '.join(ce_film['horaires'])
-                    liste_films.append(ce_film)        
+                    liste_films.append(ce_film)
             self.dico[nom_cine] = liste_films
 
     @property
@@ -66,7 +70,7 @@ class Allosession():
             liste_films = self.dico[nom_cinema]
             for film in liste_films:
                 horaires = ' | '.join(film['horaires'])
-                titre = "{0} ({1})".format(film['titre'], film['directors']) 
+                titre = "{0} ({1})".format(film['titre'], film['directors'])
                 resultat += "    {0}    {1}\n".format(titre,horaires)
             resultat += '\n\n'
         return resultat
