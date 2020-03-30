@@ -79,7 +79,7 @@ body {
 
   </map>
 
-  <a href="#"> Crédits </a> 
+  <a href="#" @click="showCredits = true"> Crédits </a> 
 
   <div  class="modal-background" v-show="video" @click="video = false">
 
@@ -101,7 +101,9 @@ body {
     <!-- Modal content -->
     <div class="modal-content" @click.stop>
       <span class="close" @click="video=false">&times;</span>
-      <h1> Un Titre </h1>
+      <h1> Sacré Cœur </h1>
+      <p>avec Clément Le Glatin et Joséphine Aupetit </p>
+      <p>réalisé par Maxime Bettinelli</p>
     </div>
 
   </div>
