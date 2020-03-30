@@ -19,6 +19,3 @@ def send_background():
 def send_music():
 	print('Hello')
 	return send_from_directory('templates', 'music.wav')
-
-
-app.run()
